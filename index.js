@@ -5,7 +5,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors')
 const jwt = require('jsonwebtoken');
 
-var models = require('./models').sequelize.models;
+const apiRouter = require('./api/index')
+
+
+const models = require('./models').sequelize.models;
 
 
 app.use(cors())
@@ -17,6 +20,19 @@ app.use((req, res, next) => {
 
     console.log(req.method, ' at ', req.path, ' with ', req.query, ' or ', req.body);
     next()
+})
+
+/**
+     * api router
+     */
+app.use('/api', apiRouter)
+
+
+/**
+ * 404 route not found
+ */
+app.use((req, res) => {
+    res.json('404 - Not found')
 })
 
 /**
