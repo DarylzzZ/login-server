@@ -20,7 +20,7 @@ export default (sequelize, DataTypes) => {
         user.password = hash
       })
       .catch(err => {
-        throw new Error()
+        throw new Error(err.message)
       })
   })
 
@@ -38,9 +38,7 @@ export default (sequelize, DataTypes) => {
   User.prototype.validatePassword = function(password) {
     return bcrypt
       .compare(password, this.password)
-      .then(res => {
-        return res
-      })
+      .then(res => res)
       .catch(err => {
         throw new Error(err.message)
       })
