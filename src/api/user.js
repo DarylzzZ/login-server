@@ -35,24 +35,32 @@ router.post('/login', (req, res) => {
   let { username, password } = req.body
 
   User.findOne({ where: { username } })
-    .then(user => user.validatePassword(password))
+    .then(user => {
+      if (user) {
+        return user.validatePassword(password)
+      } else {
+        throw new Error('User not found.')
+      }
+    })
     .then(pass =>
       pass
         ? res.status(200).json({
             success: true,
             token: jwt.sign({ username }, config.jwtsecret)
           })
-        : res.status(400).json({
+        : res.status(200).json({
             success: false,
             message: 'incorrect password'
           })
     )
-    .catch(err =>
-      res.status(500).json({
+    .catch(err => {
+      console.log(err.message)
+
+      res.status(200).json({
         success: false,
         message: err.message
       })
-    )
+    })
 })
 
 /**

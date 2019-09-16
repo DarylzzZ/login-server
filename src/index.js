@@ -7,7 +7,7 @@ import apiRouter from './api'
 import db from './models'
 
 const app = express()
-const port = 3000
+const port = 3001
 
 let server = db.sequelize
   .sync({
