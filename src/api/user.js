@@ -79,13 +79,13 @@ router.post('/', (req, res) => {
         })
       )
       .catch(err =>
-        res.status(500).json({
+        res.status(200).json({
           success: false,
           message: err.message
         })
       )
   } else {
-    res.status(400).json({
+    res.status(200).json({
       success: false,
       message: 'Invalid request'
     })

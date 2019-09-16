@@ -8,6 +8,8 @@ class SignupForm extends React.Component {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
       if (!err) {
+        let { username, password } = values
+        this.props.onSignup(username, password)
         console.log('Received values of form: ', values)
       }
     })
