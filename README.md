@@ -1,12 +1,14 @@
 # login-server
 
-A demo server implemented basic user authentication with RESTful API and following tech-stack:
+A demo server adn a react front-end app implemented basic user authentication with RESTful API and following tech-stack:
 
-1. [expressjs](https://github.com/expressjs/express)
-2. [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
-3. [Mysql](https://www.mysql.com/)
-4. [Sequelize ORM](https://github.com/sequelize/sequelize)
-5. [babel](https://babeljs.io/)
+- [expressjs](https://github.com/expressjs/express)
+- [reactjs](https://reactjs.org/)
+- [redux](https://redux.js.org/)
+- [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
+- [Mysql](https://www.mysql.com/)
+- [Sequelize ORM](https://github.com/sequelize/sequelize)
+- [babel](https://babeljs.io/)
 
 
 ## Instruction
