@@ -1,17 +1,14 @@
 import actions from './actions'
 
-const initState = { token: null, user: null }
+const initState = { redirectUrl: null }
 
 export default function authReducer(state = initState, action) {
   switch (action.type) {
-    case actions.LOGIN_SUCCESS:
+    case actions.SET_REDIRECT:
       return {
         ...state,
-        user: action.user,
-        token: action.token
+        redirectUrl:action.redirectUrl
       }
-    case actions.LOGOUT:
-      return initState
     default:
       return state
   }

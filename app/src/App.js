@@ -6,13 +6,16 @@ import Login from './containers/Auth/Login'
 import Signup from './containers/Auth/Signup'
 
 import './App.css'
+import Dashboard from './containers/Auth/Dashboard'
 
 function App() {
   return (
     <Provider store={store}>
       <HashRouter>
-        <Route path={'/login'} component={Login} />
-        <Route path={'/signup'} component={Signup} />
+        <Route exact path='/' component={Login} />
+        <Route path='/login' component={Login} />
+        <Route path='/signup' component={Signup} />
+        <Route path='/dashboard' component={Dashboard} />
       </HashRouter>
     </Provider>
   )

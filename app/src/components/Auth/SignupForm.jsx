@@ -9,7 +9,7 @@ class SignupForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         let { username, password } = values
-        this.props.onSignup(username, password)
+        this.props.handleSignup(username, password)
         console.log('Received values of form: ', values)
       }
     })

@@ -6,7 +6,7 @@ import db from '../models'
 
 const router = express.Router()
 
-let { User } = db.sequelize.models
+const { User } = db.sequelize.models
 
 /**
  * api get all users
@@ -32,7 +32,7 @@ router.get('/', (req, res) => {
  *
  */
 router.post('/login', (req, res) => {
-  let { username, password } = req.body
+  const { username, password } = req.body
 
   User.findOne({ where: { username } })
     .then(user => {
@@ -46,6 +46,7 @@ router.post('/login', (req, res) => {
       pass
         ? res.status(200).json({
             success: true,
+            user: { username: username },
             token: jwt.sign({ username }, config.jwtsecret)
           })
         : res.status(200).json({
@@ -54,8 +55,6 @@ router.post('/login', (req, res) => {
           })
     )
     .catch(err => {
-      console.log(err.message)
-
       res.status(200).json({
         success: false,
         message: err.message
@@ -68,13 +67,14 @@ router.post('/login', (req, res) => {
  *
  */
 router.post('/', (req, res) => {
-  let { username, password } = req.body
+  const { username, password } = req.body
 
   if (username && password) {
     User.create({ username, password })
       .then(user =>
         res.status(200).json({
           success: true,
+          user: { username: user.username },
           token: jwt.sign({ username: user.username }, config.jwtsecret)
         })
       )

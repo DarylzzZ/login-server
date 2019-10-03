@@ -28,17 +28,23 @@ const actions = {
       .then(res => {
         console.log(res.data)
 
-        let { data } = res
+        const { data } = res
         if (data.success) {
-          dispatch({ type: actions.LOGIN_SUCCESS, token: data.token })
+          dispatch({
+            type: actions.LOGIN_SUCCESS,
+            token: data.token,
+            user: data.user
+          })
           notification.open({
-            message: 'Login success'
+            message: 'Login success',
+            duration: 2
           })
         } else {
           dispatch({ type: actions.LOGIN_ERROR, message: data.message })
           notification.open({
             message: 'Login error',
-            description: data.message
+            description: data.message,
+            duration: 2
           })
         }
       })
@@ -46,7 +52,8 @@ const actions = {
         dispatch({ type: actions.LOGIN_ERROR, message: err.message })
         notification.open({
           message: 'Login error',
-          description: err.message
+          description: err.message,
+          duration: 2
         })
       })
   },
@@ -58,17 +65,23 @@ const actions = {
       .then(res => {
         console.log(res.data)
 
-        let { data } = res
+        const { data } = res
         if (data.success) {
-          dispatch({ type: actions.SIGNUP_SUCCESS, token: data.token })
+          dispatch({
+            type: actions.LOGIN_SUCCESS,
+            token: data.token,
+            user: data.user
+          })
           notification.open({
-            message: 'Signup success'
+            message: 'Signup success',
+            duration: 2
           })
         } else {
           dispatch({ type: actions.SIGNUP_ERROR, message: data.message })
           notification.open({
             message: 'Signup error',
-            description: data.message
+            description: data.message,
+            duration: 2
           })
         }
       })
@@ -76,7 +89,8 @@ const actions = {
         dispatch({ type: actions.SIGNUP_ERROR, message: err.message })
         notification.open({
           message: 'Signup error',
-          description: err.message
+          description: err.message,
+          duration: 2
         })
       })
   },

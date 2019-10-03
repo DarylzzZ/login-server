@@ -9,7 +9,7 @@ class LoginForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         let { username, password } = values
-        this.props.onLogin(username, password)
+        this.props.handleLogin(username, password)
         console.log('Received values of form: ', values)
       }
     })
