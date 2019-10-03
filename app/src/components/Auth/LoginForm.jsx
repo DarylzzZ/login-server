@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Icon, Input, Button, Checkbox } from 'antd'
+import { Form, Icon, Input, Button, Checkbox, notification } from 'antd'
 import { Link } from 'react-router-dom'
 import './LoginForm.css'
 
@@ -44,8 +44,26 @@ class LoginForm extends React.Component {
           {getFieldDecorator('remember', {
             valuePropName: 'checked',
             initialValue: true
-          })(<Checkbox>Remember me</Checkbox>)}
-          <Button className='login-form-forgot' type='link'>
+          })(
+            <Checkbox
+              onChange={() =>
+                notification.open({
+                  message: 'Not working :)',
+                  duration: 2
+                })
+              }>
+              Remember me
+            </Checkbox>
+          )}
+          <Button
+            className='login-form-forgot'
+            type='link'
+            onClick={() =>
+              notification.open({
+                message: 'Nothing happened :)',
+                duration: 2
+              })
+            }>
             Forgot password
           </Button>
           <Button
