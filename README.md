@@ -1,6 +1,6 @@
 # login-server
 
-A demo server adn a react front-end app implemented basic user authentication with RESTful API and following tech-stack:
+A demo server and a react front-end app implemented basic user authentication with RESTful API and following tech-stack:
 
 - [expressjs](https://github.com/expressjs/express)
 - [reactjs](https://reactjs.org/)
