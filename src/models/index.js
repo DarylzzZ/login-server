@@ -8,9 +8,9 @@ import config from '../config'
 
 const basename = path.basename(__filename)
 
-let db = {}
+const db = {}
 
-let sequelize = new Sequelize(config.db_name, config.db_user, config.db_pass, {
+const sequelize = new Sequelize(config.db_name, config.db_user, config.db_pass, {
   host: config.db_host,
   port: 3306,
   dialect: 'mysql' /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */,
@@ -28,7 +28,7 @@ fs.readdirSync(__dirname)
     )
   })
   .forEach(file => {
-    const model = sequelize['import'](path.join(__dirname, file))
+    const model = sequelize.import(path.join(__dirname, file))
     db[model.name] = model
   })
 

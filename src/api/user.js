@@ -6,7 +6,7 @@ import db from '../models'
 
 const router = express.Router()
 
-let { User } = db.sequelize.models
+const { User } = db.sequelize.models
 
 /**
  * api get all users
@@ -32,27 +32,34 @@ router.get('/', (req, res) => {
  *
  */
 router.post('/login', (req, res) => {
-  let { username, password } = req.body
+  const { username, password } = req.body
 
   User.findOne({ where: { username } })
-    .then(user => user.validatePassword(password))
+    .then(user => {
+      if (user) {
+        return user.validatePassword(password)
+      } else {
+        throw new Error('User not found.')
+      }
+    })
     .then(pass =>
       pass
         ? res.status(200).json({
             success: true,
+            user: { username: username },
             token: jwt.sign({ username }, config.jwtsecret)
           })
-        : res.status(400).json({
+        : res.status(200).json({
             success: false,
             message: 'incorrect password'
           })
     )
-    .catch(err =>
-      res.status(500).json({
+    .catch(err => {
+      res.status(200).json({
         success: false,
         message: err.message
       })
-    )
+    })
 })
 
 /**
@@ -60,24 +67,25 @@ router.post('/login', (req, res) => {
  *
  */
 router.post('/', (req, res) => {
-  let { username, password } = req.body
+  const { username, password } = req.body
 
   if (username && password) {
     User.create({ username, password })
       .then(user =>
         res.status(200).json({
           success: true,
+          user: { username: user.username },
           token: jwt.sign({ username: user.username }, config.jwtsecret)
         })
       )
       .catch(err =>
-        res.status(500).json({
+        res.status(200).json({
           success: false,
           message: err.message
         })
       )
   } else {
-    res.status(400).json({
+    res.status(200).json({
       success: false,
       message: 'Invalid request'
     })

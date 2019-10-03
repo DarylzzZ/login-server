@@ -7,9 +7,9 @@ import apiRouter from './api'
 import db from './models'
 
 const app = express()
-const port = 3000
+const port = 3001
 
-let server = db.sequelize
+const server = db.sequelize
   .sync({
     force: false
   })
@@ -25,6 +25,11 @@ let server = db.sequelize
 
     app.use(morgan(':method :url :status :body - :response-time ms'))
 
+    app.use(express.static('./app/build'))
+
+    app.get('/', function(req, res) {
+      res.sendFile(path.join(__dirname + '/index.html'))
+    })
     /**
      * api router
      */
