@@ -7,7 +7,7 @@ import apiRouter from './api'
 import db from './models'
 
 const app = express()
-const port = 8080
+const port = 80
 
 const server = db.sequelize
   .sync({
@@ -19,7 +19,6 @@ const server = db.sequelize
     app.use(cors())
     app.use(bodyParser.json())
     app.use(bodyParser.urlencoded({ extended: false }))
-    // app.use(morgan('tiny'))
 
     morgan.token('body', function(req, res) {
       return JSON.stringify(req.body)
