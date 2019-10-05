@@ -7,13 +7,15 @@ import apiRouter from './api'
 import db from './models'
 
 const app = express()
-const port = 3001
+const port = 8080
 
 const server = db.sequelize
   .sync({
     force: false
   })
-  .then(() => {
+  .then(_ => {
+    console.log('db connected ')
+
     app.use(cors())
     app.use(bodyParser.json())
     app.use(bodyParser.urlencoded({ extended: false }))
