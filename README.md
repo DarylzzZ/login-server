@@ -10,8 +10,6 @@ A demo server and a react front-end app implemented basic user authentication wi
 - [Sequelize ORM](https://github.com/sequelize/sequelize)
 - [babel](https://babeljs.io/)
 
-## A demo can be accessed at http://www.amiright.io:8080
-
 
 
 ## Instruction
