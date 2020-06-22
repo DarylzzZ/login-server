@@ -3,14 +3,13 @@ import jwt from 'jsonwebtoken'
 import passport from 'passport'
 import passportLocal from 'passport-local'
 
-import config from '../config'
+import { jwtsecret } from '../config'
 import db from '../models'
 
 const router = express.Router()
 
 const { User } = db.sequelize.models
 
-router.use(passport.initialize())
 /**
  * api get all users
  */
@@ -49,7 +48,7 @@ passport.use(
                     done(null, {
                         success: true,
                         user: { username: username },
-                        token: jwt.sign({ username }, config.jwtsecret)
+                        token: jwt.sign({ username }, jwtsecret)
                     })
                 else throw new Error('incorrect password')
             })

@@ -1,5 +1,5 @@
 const config = {
-  host: 'http://www.amiright.io'
+    host: 'http://localhost'
 }
 
 export default config

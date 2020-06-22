@@ -1,37 +1,59 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-import { Layout, Breadcrumb } from 'antd'
-
-const { Content, Footer } = Layout
-
-class Dashboard extends React.Component {
-  render() {
-    console.log(this.props)
-
-    let { token, user } = this.props.Auth
-    if (!token) {
-      return <Redirect to='/login' />
-    }
-    return (
-      <Layout className='layout'>
-        <Content style={{ padding: '0 50px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
-          </Breadcrumb>
-          <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
-            Hello, {user.username} !
-          </div>
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>Created by DarylzzZ</Footer>
-      </Layout>
-    )
+import { makeStyles } from '@material-ui/core/styles'
+import Avatar from '@material-ui/core/Avatar'
+import Box from '@material-ui/core/Box'
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
+import Img from '../../assets/img/logo192.png'
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary
   }
+}))
+
+const Dashboard = () => {
+  const classes = useStyles()
+  return (
+    <Box
+      style={{
+        backgroundColor: '#e2e2e2',
+        height: '100vh',
+        boxSizing: 'border-box',
+        padding: '50px'
+      }}
+    >
+      <Grid container justify="center" spacing={3}>
+        <Grid item xs={8}>
+          <Paper className={classes.paper} justify="center">
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center'
+              }}
+            >
+              <Avatar
+                alt="Remy Sharp"
+                style={{ height: '80px', width: '80px' }}
+                src={Img}
+                className={classes.large}
+              />
+            </div>
+            <p>boaol</p>
+          </Paper>
+        </Grid>
+      </Grid>
+    </Box>
+  )
 }
 
 export default connect(
-  state => ({
+  (state) => ({
     Auth: state.Auth
   }),
   {}

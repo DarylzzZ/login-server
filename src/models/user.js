@@ -1,5 +1,3 @@
-'use strict'
-
 import bcrypt from 'bcrypt'
 
 export default (sequelize, DataTypes) => {

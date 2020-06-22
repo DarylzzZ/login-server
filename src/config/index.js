@@ -1,7 +1,5 @@
-export default {
-    jwtsecret: 'secret',
-    db_host: 'localhost',
-    db_name: 'test',
-    db_user: 'root',
-    db_pass: 'password'
-}
+export const jwtsecret = 'secret'
+export const db_host = 'localhost'
+export const db_name = 'test'
+export const db_user = 'root'
+export const db_pass = 'password'
